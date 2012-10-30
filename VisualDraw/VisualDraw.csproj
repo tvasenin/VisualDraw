@@ -4,7 +4,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AD9D87B3-B7F2-408D-BDA9-516705E5F95E}</ProjectGuid>
+    <ProjectGuid>{1A3865D6-2B56-4692-99E5-970F89DCF746}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VisualDraw</RootNamespace>

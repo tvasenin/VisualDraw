@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualDraw", "VisualDraw\VisualDraw.csproj", "{AD9D87B3-B7F2-408D-BDA9-516705E5F95E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualDraw", "VisualDraw\VisualDraw.csproj", "{1A3865D6-2B56-4692-99E5-970F89DCF746}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AD9D87B3-B7F2-408D-BDA9-516705E5F95E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD9D87B3-B7F2-408D-BDA9-516705E5F95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD9D87B3-B7F2-408D-BDA9-516705E5F95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD9D87B3-B7F2-408D-BDA9-516705E5F95E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3865D6-2B56-4692-99E5-970F89DCF746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3865D6-2B56-4692-99E5-970F89DCF746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3865D6-2B56-4692-99E5-970F89DCF746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3865D6-2B56-4692-99E5-970F89DCF746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
