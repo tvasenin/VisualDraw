@@ -41,13 +41,14 @@ namespace VisualDraw
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button_Delete = new System.Windows.Forms.Button();
             this.menuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButton_Cross
             // 
             this.radioButton_Cross.AutoSize = true;
-            this.radioButton_Cross.Location = new System.Drawing.Point(12, 389);
+            this.radioButton_Cross.Location = new System.Drawing.Point(12, 353);
             this.radioButton_Cross.Name = "radioButton_Cross";
             this.radioButton_Cross.Size = new System.Drawing.Size(51, 17);
             this.radioButton_Cross.TabIndex = 0;
@@ -60,7 +61,7 @@ namespace VisualDraw
             // 
             this.radioButton_Line.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.radioButton_Line.AutoSize = true;
-            this.radioButton_Line.Location = new System.Drawing.Point(12, 413);
+            this.radioButton_Line.Location = new System.Drawing.Point(12, 376);
             this.radioButton_Line.Name = "radioButton_Line";
             this.radioButton_Line.Size = new System.Drawing.Size(45, 17);
             this.radioButton_Line.TabIndex = 1;
@@ -72,9 +73,9 @@ namespace VisualDraw
             // MainCanvas
             // 
             this.MainCanvas.BackColor = System.Drawing.Color.White;
-            this.MainCanvas.Location = new System.Drawing.Point(69, 27);
+            this.MainCanvas.Location = new System.Drawing.Point(85, 27);
             this.MainCanvas.Name = "MainCanvas";
-            this.MainCanvas.Size = new System.Drawing.Size(611, 427);
+            this.MainCanvas.Size = new System.Drawing.Size(595, 427);
             this.MainCanvas.TabIndex = 2;
             this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
@@ -82,7 +83,7 @@ namespace VisualDraw
             // radioButton_Circle
             // 
             this.radioButton_Circle.AutoSize = true;
-            this.radioButton_Circle.Location = new System.Drawing.Point(12, 437);
+            this.radioButton_Circle.Location = new System.Drawing.Point(12, 399);
             this.radioButton_Circle.Name = "radioButton_Circle";
             this.radioButton_Circle.Size = new System.Drawing.Size(51, 17);
             this.radioButton_Circle.TabIndex = 3;
@@ -116,35 +117,35 @@ namespace VisualDraw
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.saveToolStripMenuItem1.Text = "Save as...";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -156,11 +157,22 @@ namespace VisualDraw
             // 
             this.saveFileDialog1.DefaultExt = "visualdraw";
             // 
+            // button_Delete
+            // 
+            this.button_Delete.Location = new System.Drawing.Point(12, 431);
+            this.button_Delete.Name = "button_Delete";
+            this.button_Delete.Size = new System.Drawing.Size(67, 23);
+            this.button_Delete.TabIndex = 5;
+            this.button_Delete.Text = "DELETE";
+            this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 466);
+            this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.radioButton_Circle);
             this.Controls.Add(this.MainCanvas);
             this.Controls.Add(this.radioButton_Line);
@@ -193,6 +205,7 @@ namespace VisualDraw
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button button_Delete;
 
     }
 }
