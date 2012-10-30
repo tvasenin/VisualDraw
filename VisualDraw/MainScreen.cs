@@ -32,20 +32,21 @@ namespace VisualDraw
 
         private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            int ind_TEMP = SelectMatching(Shapes,new Point(e.X,e.Y));
-            if (ind_TEMP > -1) { toolTip1.SetToolTip(MainCanvas, Convert.ToString(ShapesList.Items[ind_TEMP])); }
-            else { toolTip1.SetToolTip(MainCanvas,""); }
+            int ind_TEMP = SelectMatching(Shapes,e.Location);
             
-            if (IsShapeStart)
-            {
-                this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
-                TempShape = new Cross(e.X, e.Y);
-            }
+            if (ind_TEMP > -1)
+                toolTip1.SetToolTip(MainCanvas, Convert.ToString(ShapesList.Items[ind_TEMP]));
             else
-            {
-                if (radioButton_Line.Checked)   { TempShape = new Line(ShapeStart, new Point(e.X, e.Y)); }
-                if (radioButton_Circle.Checked) { TempShape = new Circle(ShapeStart, new Point(e.X, e.Y)); }
-                if (radioButton_Rect.Checked)   { TempShape = new Rect(ShapeStart, new Point(e.X, e.Y)); }
+                toolTip1.SetToolTip(MainCanvas,"");
+            
+            if (IsShapeStart) {
+                this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
+                TempShape = new Cross(e.Location);
+            }
+            else {
+                if (radioButton_Line.Checked)   { TempShape = new Line(ShapeStart, e.Location); }
+                if (radioButton_Circle.Checked) { TempShape = new Circle(ShapeStart, e.Location); }
+                if (radioButton_Rect.Checked)   { TempShape = new Rect(ShapeStart, e.Location); }
             }
             MainCanvas.Invalidate();
         }
@@ -67,9 +68,8 @@ namespace VisualDraw
             //this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
             if (radioButton_Cross.Checked)
                 AddShape(TempShape);
-            else
-            {
-                if (IsShapeStart) { ShapeStart = new Point(e.X, e.Y); }
+            else {
+                if (IsShapeStart) { ShapeStart = e.Location; }
                 else AddShape(TempShape);
                 IsShapeStart = !IsShapeStart;
             }
@@ -77,8 +77,7 @@ namespace VisualDraw
         
         private void AddShape(Shape AddedShape)
         {
-            if (AddedShape.IsNotDegenerate)
-            { 
+            if (AddedShape.IsNotDegenerate) { 
                 Shapes.Add(AddedShape);
                 ShapesList.Items.Add(AddedShape.DescriptionString);
             }
@@ -88,7 +87,7 @@ namespace VisualDraw
         {
             IsShapeStart = true;
             ShapesList.SelectedIndices.Clear();
-            ShapesList.SelectedIndices.Add(SelectMatching(Shapes, new Point(e.X, e.Y)));
+            ShapesList.SelectedIndices.Add(SelectMatching(Shapes, e.Location));
             //this.Text = Convert.ToString(ShapesList.SelectedIndex);
         }
 
@@ -104,17 +103,16 @@ namespace VisualDraw
 
         private void MainCanvas_Paint(object sender, PaintEventArgs e)
         {
-            foreach (Shape p in this.Shapes)
-            {
+            foreach (Shape p in this.Shapes) {
                 p.DrawWith(e.Graphics,pMain);
             }
 
-            foreach (int i in ShapesList.SelectedIndices)
-            {
+            foreach (int i in ShapesList.SelectedIndices) {
                 Shapes[i].DrawWith(e.Graphics, pSelect);
             }
             
-            if (TempShape != null) { TempShape.DrawWith(e.Graphics,pTemp  ); }
+            if (TempShape != null) 
+                TempShape.DrawWith(e.Graphics,pTemp);
 
         }
 
@@ -176,10 +174,10 @@ namespace VisualDraw
                 {
                     switch (line)
                     {
-                        case "Cross": AddShape(new Cross(sr)); break;
-                        case "Line": AddShape(new Line(sr)); break;
+                        case  "Cross": AddShape(new  Cross(sr)); break;
+                        case   "Line": AddShape(new   Line(sr)); break;
                         case "Circle": AddShape(new Circle(sr)); break;
-                        case "Rect": AddShape(new Rect(sr)); break;
+                        case   "Rect": AddShape(new   Rect(sr)); break;
                     }
                     line = sr.ReadLine();
                 }
@@ -191,16 +189,13 @@ namespace VisualDraw
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) //Save
         {
             if (file_cur == null)
-            {
                 saveToolStripMenuItem1_Click(sender, e);
-            }
             else
                 SaveFile(file_cur);
         }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e) //SaveAs
         {
-            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 file_cur = saveFileDialog1.FileName;
                 SaveFile(file_cur);
             }
@@ -232,7 +227,8 @@ namespace VisualDraw
 
         private void FiguresList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete) { button_Delete_Click(null,null); }
+            if (e.KeyCode == Keys.Delete)
+                button_Delete_Click(null, null);
         }
     }
 }
