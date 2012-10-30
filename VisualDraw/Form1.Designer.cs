@@ -28,6 +28,7 @@ namespace VisualDraw
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radioButton_Cross = new System.Windows.Forms.RadioButton();
             this.radioButton_Line = new System.Windows.Forms.RadioButton();
             this.MainCanvas = new System.Windows.Forms.Panel();
@@ -43,6 +44,7 @@ namespace VisualDraw
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button_Delete = new System.Windows.Forms.Button();
             this.FiguresList = new System.Windows.Forms.ListBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,10 +177,17 @@ namespace VisualDraw
             this.FiguresList.FormattingEnabled = true;
             this.FiguresList.Location = new System.Drawing.Point(12, 27);
             this.FiguresList.Name = "FiguresList";
+            this.FiguresList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.FiguresList.Size = new System.Drawing.Size(138, 316);
             this.FiguresList.TabIndex = 6;
             this.FiguresList.SelectedIndexChanged += new System.EventHandler(this.FiguresList_SelectedIndexChanged);
             this.FiguresList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FiguresList_KeyDown);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.UseAnimation = false;
+            this.toolTip1.UseFading = false;
             // 
             // MainScreen
             // 
@@ -221,6 +230,7 @@ namespace VisualDraw
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button_Delete;
         private System.Windows.Forms.ListBox FiguresList;
+        private System.Windows.Forms.ToolTip toolTip1;
 
     }
 }
