@@ -18,7 +18,9 @@ namespace VisualDraw
         string file_cur;
         Pen pMain   = new Pen(Color.Black);
         Pen pSelect = new Pen(Color.Red);
+        Pen pTemp   = new Pen(Color.DarkGray);
         Figure Selection;
+        Figure TempFigure;
                
         
         public MainScreen()
@@ -29,6 +31,33 @@ namespace VisualDraw
         private void MainScreen_radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             IsFigureStart = true;
+        }
+
+        private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsFigureStart)
+            {
+                //this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
+                TempFigure = new Cross(e.X, e.Y);
+            }
+            else
+            {
+                if (radioButton_Line.Checked)
+                {
+                    TempFigure = new Line(FigureStart, new Point(e.X, e.Y));
+                }
+                
+                if (radioButton_Circle.Checked)
+                {
+                    TempFigure = new Circle(new Point(FigureStart.X, FigureStart.Y), new Point(e.X, e.Y));
+                }
+            }
+            MainCanvas.Invalidate();
+        }
+        private void MainCanvas_MouseLeave(object sender, EventArgs e)
+        {
+            TempFigure = null;
+            MainCanvas.Invalidate();
         }
 
         private void MainCanvas_MouseDown(object sender, MouseEventArgs e)
@@ -76,6 +105,7 @@ namespace VisualDraw
 
         private void MainCanvas_ProcessRButton(object sender, MouseEventArgs e)
         {
+            IsFigureStart = true;
             SelectMatching(Figures, new Point(e.X, e.Y));
         }
 
@@ -101,6 +131,11 @@ namespace VisualDraw
             if (Selection != null)
             {
                 Selection.DrawWith(e.Graphics,pSelect);
+            }
+            
+            if (TempFigure != null)
+            {
+                TempFigure.DrawWith(e.Graphics,pTemp);
             }
 
         }
@@ -164,7 +199,6 @@ namespace VisualDraw
                 Selection = null;
                 line = sr.ReadLine();
                 while (line != null)
-                {
                     switch (line)
                     {
                         case "Cross": Figures.Add(new Cross(sr)); break;
@@ -172,7 +206,7 @@ namespace VisualDraw
                         case "Circle": Figures.Add(new Circle(sr)); break;
                     }
                     line = sr.ReadLine();
-                }
+                
 
                 sr.Close();
 
@@ -214,6 +248,10 @@ namespace VisualDraw
             Selection = null;
             MainCanvas.Invalidate();
         }
+
+        
+
+
 
     }
         

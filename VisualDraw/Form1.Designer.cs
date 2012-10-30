@@ -77,8 +77,10 @@ namespace VisualDraw
             this.MainCanvas.Name = "MainCanvas";
             this.MainCanvas.Size = new System.Drawing.Size(595, 427);
             this.MainCanvas.TabIndex = 2;
-            this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
+            this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
+            this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
+            this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
             // 
             // radioButton_Circle
             // 
