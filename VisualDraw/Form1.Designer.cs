@@ -43,7 +43,7 @@ namespace VisualDraw
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button_Delete = new System.Windows.Forms.Button();
-            this.FiguresList = new System.Windows.Forms.ListBox();
+            this.ShapesList = new System.Windows.Forms.ListBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.radioButton_Rect = new System.Windows.Forms.RadioButton();
             this.menuStrip_Main.SuspendLayout();
@@ -51,8 +51,9 @@ namespace VisualDraw
             // 
             // radioButton_Cross
             // 
+            this.radioButton_Cross.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton_Cross.AutoSize = true;
-            this.radioButton_Cross.Location = new System.Drawing.Point(12, 330);
+            this.radioButton_Cross.Location = new System.Drawing.Point(12, 426);
             this.radioButton_Cross.Name = "radioButton_Cross";
             this.radioButton_Cross.Size = new System.Drawing.Size(51, 17);
             this.radioButton_Cross.TabIndex = 0;
@@ -64,8 +65,9 @@ namespace VisualDraw
             // radioButton_Line
             // 
             this.radioButton_Line.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.radioButton_Line.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton_Line.AutoSize = true;
-            this.radioButton_Line.Location = new System.Drawing.Point(12, 353);
+            this.radioButton_Line.Location = new System.Drawing.Point(12, 449);
             this.radioButton_Line.Name = "radioButton_Line";
             this.radioButton_Line.Size = new System.Drawing.Size(45, 17);
             this.radioButton_Line.TabIndex = 1;
@@ -76,20 +78,24 @@ namespace VisualDraw
             // 
             // MainCanvas
             // 
+            this.MainCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.MainCanvas.BackColor = System.Drawing.Color.White;
-            this.MainCanvas.Location = new System.Drawing.Point(156, 27);
+            this.MainCanvas.Location = new System.Drawing.Point(168, 27);
             this.MainCanvas.Name = "MainCanvas";
-            this.MainCanvas.Size = new System.Drawing.Size(524, 427);
+            this.MainCanvas.Size = new System.Drawing.Size(604, 523);
             this.MainCanvas.TabIndex = 2;
-            this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
-            this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
             this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
+            this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
+            this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
             // 
             // radioButton_Circle
             // 
+            this.radioButton_Circle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton_Circle.AutoSize = true;
-            this.radioButton_Circle.Location = new System.Drawing.Point(12, 376);
+            this.radioButton_Circle.Location = new System.Drawing.Point(12, 472);
             this.radioButton_Circle.Name = "radioButton_Circle";
             this.radioButton_Circle.Size = new System.Drawing.Size(51, 17);
             this.radioButton_Circle.TabIndex = 3;
@@ -104,7 +110,7 @@ namespace VisualDraw
             this.fileToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
-            this.menuStrip_Main.Size = new System.Drawing.Size(692, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(784, 24);
             this.menuStrip_Main.TabIndex = 4;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
@@ -117,41 +123,41 @@ namespace VisualDraw
             this.saveToolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.saveToolStripMenuItem1.Text = "Save as...";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -165,7 +171,8 @@ namespace VisualDraw
             // 
             // button_Delete
             // 
-            this.button_Delete.Location = new System.Drawing.Point(12, 431);
+            this.button_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Delete.Location = new System.Drawing.Point(12, 527);
             this.button_Delete.Name = "button_Delete";
             this.button_Delete.Size = new System.Drawing.Size(67, 23);
             this.button_Delete.TabIndex = 5;
@@ -173,16 +180,18 @@ namespace VisualDraw
             this.button_Delete.UseVisualStyleBackColor = true;
             this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
-            // FiguresList
+            // ShapesList
             // 
-            this.FiguresList.FormattingEnabled = true;
-            this.FiguresList.Location = new System.Drawing.Point(12, 27);
-            this.FiguresList.Name = "FiguresList";
-            this.FiguresList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.FiguresList.Size = new System.Drawing.Size(138, 290);
-            this.FiguresList.TabIndex = 6;
-            this.FiguresList.SelectedIndexChanged += new System.EventHandler(this.FiguresList_SelectedIndexChanged);
-            this.FiguresList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FiguresList_KeyDown);
+            this.ShapesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.ShapesList.FormattingEnabled = true;
+            this.ShapesList.Location = new System.Drawing.Point(12, 27);
+            this.ShapesList.Name = "ShapesList";
+            this.ShapesList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.ShapesList.Size = new System.Drawing.Size(138, 381);
+            this.ShapesList.TabIndex = 6;
+            this.ShapesList.SelectedIndexChanged += new System.EventHandler(this.FiguresList_SelectedIndexChanged);
+            this.ShapesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FiguresList_KeyDown);
             // 
             // toolTip1
             // 
@@ -192,8 +201,9 @@ namespace VisualDraw
             // 
             // radioButton_Rect
             // 
+            this.radioButton_Rect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton_Rect.AutoSize = true;
-            this.radioButton_Rect.Location = new System.Drawing.Point(12, 399);
+            this.radioButton_Rect.Location = new System.Drawing.Point(12, 495);
             this.radioButton_Rect.Name = "radioButton_Rect";
             this.radioButton_Rect.Size = new System.Drawing.Size(74, 17);
             this.radioButton_Rect.TabIndex = 7;
@@ -206,9 +216,9 @@ namespace VisualDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 466);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.radioButton_Rect);
-            this.Controls.Add(this.FiguresList);
+            this.Controls.Add(this.ShapesList);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.radioButton_Circle);
             this.Controls.Add(this.MainCanvas);
@@ -217,6 +227,7 @@ namespace VisualDraw
             this.Controls.Add(this.menuStrip_Main);
             this.MainMenuStrip = this.menuStrip_Main;
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainScreen";
             this.Text = "VisualDraw";
             this.Load += new System.EventHandler(this.MainScreen_Load);
@@ -243,7 +254,7 @@ namespace VisualDraw
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button_Delete;
-        private System.Windows.Forms.ListBox FiguresList;
+        private System.Windows.Forms.ListBox ShapesList;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.RadioButton radioButton_Rect;
 
