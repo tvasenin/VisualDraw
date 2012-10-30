@@ -18,8 +18,7 @@ namespace VisualDraw
         string file_cur;
         Pen pMain   = new Pen(Color.Black);
         Pen pSelect = new Pen(Color.Red);
-        int SelectionIdx = 0;
-        bool IsSelected = false;
+        Figure Selection;
                
         
         public MainScreen()
@@ -42,7 +41,7 @@ namespace VisualDraw
 
         private void MainCanvas_ProcessLButton(object sender, MouseEventArgs e)
         {
-            IsSelected = false;
+            Selection = null;
             this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
             if (radioButton_Cross.Checked)
             {
@@ -53,39 +52,43 @@ namespace VisualDraw
                 if (IsFigureStart)
                 {
                     FigureStart = new Point(e.X, e.Y);
-                    IsFigureStart = false;
                 }
                 else
                 {
                     Figures.Add(new Line(FigureStart, new Point(e.X, e.Y)));
-                    IsFigureStart = true;
                 }
+                IsFigureStart = !IsFigureStart;
             }
             else if (radioButton_Circle.Checked)
             {
                 if (IsFigureStart)
                 {
                     FigureStart = new Point(e.X, e.Y);
-                    IsFigureStart = false;
                 }
                 else
                 {
-                    Figures.Add(new Circle(new Point(FigureStart.X, FigureStart.Y), (float)Math.Sqrt(Math.Pow(e.X - FigureStart.X, 2) + Math.Pow(e.Y - FigureStart.Y, 2))));
-                    IsFigureStart = true;
+                    Figures.Add(new Circle(new Point(FigureStart.X, FigureStart.Y), new Point(e.X,e.Y)));
                 }
+                IsFigureStart = !IsFigureStart;
+
             }
         }
 
         private void MainCanvas_ProcessRButton(object sender, MouseEventArgs e)
         {
-            if (Figures.Count == 0) return;
-            SelectionIdx = NearestFigureIdx(Figures, new Point(e.X, e.Y));
-            IsSelected = true;
+            SelectMatching(Figures, new Point(e.X, e.Y));
         }
 
-        private static int NearestFigureIdx(List<Figure> Figures, Point S)
-        { 
-            return Figures.Count - 1 ;
+        private void SelectMatching(List<Figure> Figures, Point S)
+        {
+            Selection = null;
+            foreach (Figure p in Figures)
+            {
+                if (p.IsNearTo(S))
+                {
+                    Selection = p;
+                }
+            }
         }
 
         private void MainCanvas_Paint(object sender, PaintEventArgs e)
@@ -95,9 +98,9 @@ namespace VisualDraw
                 p.DrawWith(e.Graphics,pMain);
             }
             
-            if (IsSelected)
+            if (Selection != null)
             {
-                Figures[SelectionIdx].DrawWith(e.Graphics,pSelect);
+                Selection.DrawWith(e.Graphics,pSelect);
             }
 
         }
@@ -145,7 +148,7 @@ namespace VisualDraw
         {
             file_cur = null;
             Figures.Clear();
-            IsSelected = false;
+            Selection = null;
             MainCanvas.Invalidate();
         }
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,7 +161,7 @@ namespace VisualDraw
             {
                 StreamReader sr = new StreamReader(file_cur);
                 Figures.Clear();
-                IsSelected = false;
+                Selection = null;
                 line = sr.ReadLine();
                 while (line != null)
                 {
@@ -207,9 +210,8 @@ namespace VisualDraw
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
-            if (!IsSelected) return;
-            Figures.RemoveAt(SelectionIdx);
-            IsSelected = false;
+            Figures.Remove(Selection);
+            Selection = null;
             MainCanvas.Invalidate();
         }
 
@@ -220,6 +222,16 @@ namespace VisualDraw
     {
         public abstract void DrawWith(Graphics g, Pen p);
         public abstract void SaveTo(StreamWriter sw);
+        public abstract bool IsNearTo(Point S);
+
+        protected int SqrDist(Point S, Point F)
+        {
+            return (int) (Math.Pow(S.X - F.X, 2) + Math.Pow(S.Y - F.Y, 2));
+        }
+        protected float Dist(Point S, Point F)
+        {
+            return (float) Math.Sqrt(SqrDist(S, F));
+        }
     }
 
     public class Cross : Figure
@@ -252,7 +264,10 @@ namespace VisualDraw
             sw.WriteLine("Cross");
             sw.WriteLine(" " + C.X + " " + C.Y);
         }
-
+        public override bool IsNearTo(Point S)
+        {
+            return (Math.Abs(C.X - S.X) <= 2) && (Math.Abs(C.Y - S.Y) <= 2);
+        }
     }
     
     public class Line: Figure
@@ -283,7 +298,11 @@ namespace VisualDraw
             sw.WriteLine("Line");
             sw.WriteLine(" " + S.X + " " + S.Y + " " + F.X + " " + F.Y);
         }
-
+        public override bool IsNearTo(Point P)
+        {
+            //approximate check
+            return (Math.Abs(Dist(S, P) + Dist(P, F) - Dist(S, F)) <= 1);
+        }
     }
         
     public class Circle : Figure
@@ -291,12 +310,11 @@ namespace VisualDraw
         Point C;
         float R;
 
-        public Circle(Point c, float r)
+        public Circle(Point c, Point o)
         {
             this.C = c;
-            this.R = r;
+            this.R = Dist(c, o);
         }
-
         public Circle(StreamReader sr)
         {
             string line;
@@ -316,7 +334,10 @@ namespace VisualDraw
             sw.WriteLine("Circle");
             sw.WriteLine(" " + C.X + " " + C.Y + " " + R);
         }
-
+        public override bool IsNearTo(Point P)
+        {
+            return (Math.Abs(R - Dist(C, P)) <= 2);
+        }
     }
 
 }
