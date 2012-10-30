@@ -244,7 +244,7 @@ namespace VisualDraw
         }
     }
 
-    
+
     public abstract class Shape
     {
         public abstract void DrawWith(Graphics g, Pen p);
@@ -252,17 +252,17 @@ namespace VisualDraw
         public abstract bool IsNearTo(Point S);
         public abstract String DescriptionString { get; }
         public abstract bool IsNotDegenerate { get; }
-        
+
         protected int SqrDist(Point S, Point F)
         {
-            return (int) (Math.Pow(S.X - F.X, 2) + Math.Pow(S.Y - F.Y, 2));
+            return (int)(Math.Pow(S.X - F.X, 2) + Math.Pow(S.Y - F.Y, 2));
         }
         protected float Dist(Point S, Point F)
         {
-            return (float) Math.Sqrt(SqrDist(S, F));
+            return (float)Math.Sqrt(SqrDist(S, F));
         }
     }
-    public class Cross  : Shape
+    public class Cross : Shape
     {
         public Point C;
         public Cross(Point p)
@@ -303,7 +303,7 @@ namespace VisualDraw
             get { return "Cross (" + Convert.ToString(C.X) + "," + Convert.ToString(C.Y) + ")"; }
         }
     }
-    public class Line   : Shape
+    public class Line : Shape
     {
         public Point S, F;
         public int Length_sqr
@@ -326,7 +326,7 @@ namespace VisualDraw
         }
         public override bool IsNotDegenerate
         {
-            get { return Length_sqr > 0 ; }
+            get { return Length_sqr > 0; }
         }
         public override void DrawWith(Graphics g, Pen p)
         {
@@ -348,12 +348,12 @@ namespace VisualDraw
         }
     }
     public class Circle : Shape
-    {    
+    {
         public Point C;
         public Point O;
         public float R
         {
-            get {return Dist(C, O);}
+            get { return Dist(C, O); }
         }
 
         public Circle(Point c, Point o)
@@ -396,12 +396,12 @@ namespace VisualDraw
     public class Rect : Shape
     {
         public Point C1, C2;
-        public int  Width { get { return C2.X - C1.X; } }
+        public int Width { get { return C2.X - C1.X; } }
         public int Height { get { return C2.Y - C1.Y; } }
         public Rect(Point c1, Point c2)
         {
-            this.C1 = new Point(Math.Min(c1.X,c2.X),Math.Min(c1.Y,c2.Y));
-            this.C2 = new Point(Math.Max(c1.X,c2.X),Math.Max(c1.Y,c2.Y));
+            this.C1 = new Point(Math.Min(c1.X, c2.X), Math.Min(c1.Y, c2.Y));
+            this.C2 = new Point(Math.Max(c1.X, c2.X), Math.Max(c1.Y, c2.Y));
         }
         public Rect(StreamReader sr)
         {
@@ -414,7 +414,7 @@ namespace VisualDraw
         }
         public override bool IsNotDegenerate
         {
-            get { return Dist(C1,C2) > 0 ; }
+            get { return Dist(C1, C2) > 0; }
 
         }
         public override void DrawWith(Graphics g, Pen p)
@@ -432,7 +432,7 @@ namespace VisualDraw
         }
         public override bool IsNearTo(Point P)
         {
-            Rect  inbox = new Rect(new Point(C1.X + 3, C1.Y + 3), new Point(C2.X - 3, C2.Y - 3));
+            Rect inbox = new Rect(new Point(C1.X + 3, C1.Y + 3), new Point(C2.X - 3, C2.Y - 3));
             Rect outbox = new Rect(new Point(C1.X - 2, C1.Y - 2), new Point(C2.X + 2, C2.Y + 2));
 
             if (inbox.Width <= 0) { return outbox.IsInside(P); } else { return outbox.IsInside(P) && !inbox.IsInside(P); }
