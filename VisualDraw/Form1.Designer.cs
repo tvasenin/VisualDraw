@@ -78,9 +78,9 @@ namespace VisualDraw
             // 
             // MainCanvas
             // 
-            this.MainCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainCanvas.BackColor = System.Drawing.Color.White;
             this.MainCanvas.Location = new System.Drawing.Point(168, 27);
             this.MainCanvas.Name = "MainCanvas";
@@ -182,8 +182,8 @@ namespace VisualDraw
             // 
             // ShapesList
             // 
-            this.ShapesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.ShapesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ShapesList.FormattingEnabled = true;
             this.ShapesList.Location = new System.Drawing.Point(12, 27);
             this.ShapesList.Name = "ShapesList";

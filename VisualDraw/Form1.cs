@@ -20,7 +20,6 @@ namespace VisualDraw
         Pen pSelect = new Pen(Color.Red,2);
         Pen pTemp   = new Pen(Color.DarkGray);
         Shape TempShape;
-    
         
         public MainScreen()
         {
@@ -97,7 +96,8 @@ namespace VisualDraw
         {
             for (int i = 0; i < Shapes.Count; i++)
             {
-                if (Shapes[i].IsNearTo(S)) { return i; }
+                if (Shapes[i].IsNearTo(S))
+                    return i;
             }
             return -1;
         }
