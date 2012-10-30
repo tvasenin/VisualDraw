@@ -45,13 +45,14 @@ namespace VisualDraw
             this.button_Delete = new System.Windows.Forms.Button();
             this.FiguresList = new System.Windows.Forms.ListBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.radioButton_Rect = new System.Windows.Forms.RadioButton();
             this.menuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
             // radioButton_Cross
             // 
             this.radioButton_Cross.AutoSize = true;
-            this.radioButton_Cross.Location = new System.Drawing.Point(12, 353);
+            this.radioButton_Cross.Location = new System.Drawing.Point(12, 330);
             this.radioButton_Cross.Name = "radioButton_Cross";
             this.radioButton_Cross.Size = new System.Drawing.Size(51, 17);
             this.radioButton_Cross.TabIndex = 0;
@@ -64,7 +65,7 @@ namespace VisualDraw
             // 
             this.radioButton_Line.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.radioButton_Line.AutoSize = true;
-            this.radioButton_Line.Location = new System.Drawing.Point(12, 376);
+            this.radioButton_Line.Location = new System.Drawing.Point(12, 353);
             this.radioButton_Line.Name = "radioButton_Line";
             this.radioButton_Line.Size = new System.Drawing.Size(45, 17);
             this.radioButton_Line.TabIndex = 1;
@@ -88,7 +89,7 @@ namespace VisualDraw
             // radioButton_Circle
             // 
             this.radioButton_Circle.AutoSize = true;
-            this.radioButton_Circle.Location = new System.Drawing.Point(12, 399);
+            this.radioButton_Circle.Location = new System.Drawing.Point(12, 376);
             this.radioButton_Circle.Name = "radioButton_Circle";
             this.radioButton_Circle.Size = new System.Drawing.Size(51, 17);
             this.radioButton_Circle.TabIndex = 3;
@@ -178,7 +179,7 @@ namespace VisualDraw
             this.FiguresList.Location = new System.Drawing.Point(12, 27);
             this.FiguresList.Name = "FiguresList";
             this.FiguresList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.FiguresList.Size = new System.Drawing.Size(138, 316);
+            this.FiguresList.Size = new System.Drawing.Size(138, 290);
             this.FiguresList.TabIndex = 6;
             this.FiguresList.SelectedIndexChanged += new System.EventHandler(this.FiguresList_SelectedIndexChanged);
             this.FiguresList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FiguresList_KeyDown);
@@ -189,11 +190,24 @@ namespace VisualDraw
             this.toolTip1.UseAnimation = false;
             this.toolTip1.UseFading = false;
             // 
+            // radioButton_Rect
+            // 
+            this.radioButton_Rect.AutoSize = true;
+            this.radioButton_Rect.Location = new System.Drawing.Point(12, 399);
+            this.radioButton_Rect.Name = "radioButton_Rect";
+            this.radioButton_Rect.Size = new System.Drawing.Size(74, 17);
+            this.radioButton_Rect.TabIndex = 7;
+            this.radioButton_Rect.TabStop = true;
+            this.radioButton_Rect.Text = "Rectangle";
+            this.radioButton_Rect.UseVisualStyleBackColor = true;
+            this.radioButton_Rect.CheckedChanged += new System.EventHandler(this.MainScreen_radioButtons_CheckedChanged);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 466);
+            this.Controls.Add(this.radioButton_Rect);
             this.Controls.Add(this.FiguresList);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.radioButton_Circle);
@@ -231,6 +245,7 @@ namespace VisualDraw
         private System.Windows.Forms.Button button_Delete;
         private System.Windows.Forms.ListBox FiguresList;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.RadioButton radioButton_Rect;
 
     }
 }
