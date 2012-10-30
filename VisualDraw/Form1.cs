@@ -17,10 +17,10 @@ namespace VisualDraw
         Point FigureStart;
         string file_cur;
         Pen pMain   = new Pen(Color.Black);
-        Pen pSelect = new Pen(Color.Red);
+        Pen pSelect = new Pen(Color.Red,2);
         Pen pTemp   = new Pen(Color.DarkGray);
-        Figure Selection;
         Figure TempFigure;
+    
                
         
         public MainScreen()
@@ -37,7 +37,7 @@ namespace VisualDraw
         {
             if (IsFigureStart)
             {
-                //this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
+                this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
                 TempFigure = new Cross(e.X, e.Y);
             }
             else
@@ -70,55 +70,55 @@ namespace VisualDraw
 
         private void MainCanvas_ProcessLButton(object sender, MouseEventArgs e)
         {
-            Selection = null;
-            this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
+            FiguresList.SelectedIndex = -1;
+            //this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
             if (radioButton_Cross.Checked)
             {
-                Figures.Add(new Cross(e.X, e.Y));
+                Cross AddedFigure = new Cross(e.X, e.Y);
+                Figures.Add(AddedFigure);
+                FiguresList.Items.Add("Cross (" + Convert.ToString(e.X) + "," + Convert.ToString(e.Y) + ")");
             }
             else if (radioButton_Line.Checked)
             {
-                if (IsFigureStart)
+                if (IsFigureStart) { FigureStart = new Point(e.X, e.Y); }
+                else 
                 {
-                    FigureStart = new Point(e.X, e.Y);
-                }
-                else
-                {
-                    Figures.Add(new Line(FigureStart, new Point(e.X, e.Y)));
+                    Line AddedFigure = new Line(FigureStart, new Point(e.X, e.Y));
+                    Figures.Add(AddedFigure);
+                    FiguresList.Items.Add("Line   (" + Convert.ToString(FigureStart.X) + "," + Convert.ToString(FigureStart.Y) + ")-(" + Convert.ToString(e.X) + "," + Convert.ToString(e.Y) + ")");
                 }
                 IsFigureStart = !IsFigureStart;
             }
             else if (radioButton_Circle.Checked)
             {
-                if (IsFigureStart)
-                {
-                    FigureStart = new Point(e.X, e.Y);
-                }
+                if (IsFigureStart) { FigureStart = new Point(e.X, e.Y); }
                 else
                 {
-                    Figures.Add(new Circle(new Point(FigureStart.X, FigureStart.Y), new Point(e.X,e.Y)));
+                    Circle AddedFigure = new Circle(new Point(FigureStart.X, FigureStart.Y), new Point(e.X, e.Y));
+                    if (AddedFigure.R > 0)
+                    {
+                        Figures.Add(AddedFigure);
+                        FiguresList.Items.Add("Circle (" + Convert.ToString(AddedFigure.C.X) + "," + Convert.ToString(AddedFigure.C.Y) + "); " + Convert.ToString(AddedFigure.R));
+                    }
                 }
                 IsFigureStart = !IsFigureStart;
-
             }
         }
 
         private void MainCanvas_ProcessRButton(object sender, MouseEventArgs e)
         {
             IsFigureStart = true;
-            SelectMatching(Figures, new Point(e.X, e.Y));
+            FiguresList.SelectedIndex = SelectMatching(Figures, new Point(e.X, e.Y));
         }
 
-        private void SelectMatching(List<Figure> Figures, Point S)
+        private int SelectMatching(List<Figure> Figures, Point S)
         {
-            Selection = null;
-            foreach (Figure p in Figures)
+            FiguresList.SelectedIndex = -1;
+            for (int i = 0; i < Figures.Count; i++)
             {
-                if (p.IsNearTo(S))
-                {
-                    Selection = p;
-                }
+                if (Figures[i].IsNearTo(S)) { return i; }
             }
+            return -1;
         }
 
         private void MainCanvas_Paint(object sender, PaintEventArgs e)
@@ -127,16 +127,9 @@ namespace VisualDraw
             {
                 p.DrawWith(e.Graphics,pMain);
             }
-            
-            if (Selection != null)
-            {
-                Selection.DrawWith(e.Graphics,pSelect);
-            }
-            
-            if (TempFigure != null)
-            {
-                TempFigure.DrawWith(e.Graphics,pTemp);
-            }
+
+            if (FiguresList.SelectedIndex >= 0) { Figures[FiguresList.SelectedIndex].DrawWith(e.Graphics, pSelect); }
+            if (TempFigure != null) { TempFigure.DrawWith(e.Graphics,pTemp  ); }
 
         }
 
@@ -155,7 +148,6 @@ namespace VisualDraw
 
             aProp.SetValue(MainCanvas, true, null);
         }
-        
         private void SaveFile(string file_cur)
         {
             try
@@ -178,12 +170,11 @@ namespace VisualDraw
                 Console.WriteLine("Executing finally block.");
             }
         }
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             file_cur = null;
             Figures.Clear();
-            Selection = null;
+            FiguresList.SelectedIndex = -1;
             MainCanvas.Invalidate();
         }
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -196,7 +187,7 @@ namespace VisualDraw
             {
                 StreamReader sr = new StreamReader(file_cur);
                 Figures.Clear();
-                Selection = null;
+                FiguresList.SelectedIndex = -1;
                 line = sr.ReadLine();
                 while (line != null)
                     switch (line)
@@ -244,17 +235,26 @@ namespace VisualDraw
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
-            Figures.Remove(Selection);
-            Selection = null;
+            if (FiguresList.SelectedIndex >= 0)
+            {
+                Figures.RemoveAt(FiguresList.SelectedIndex);
+                FiguresList.Items.RemoveAt(FiguresList.SelectedIndex);
+                FiguresList.SelectedIndex = -1;
+                MainCanvas.Invalidate();
+            }
+        }
+
+        private void FiguresList_SelectedIndexChanged(object sender, EventArgs e)
+        {
             MainCanvas.Invalidate();
         }
 
-        
-
-
-
+        private void FiguresList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete) { button_Delete_Click(null,null); }
+        }
     }
-        
+
     
     public abstract class Figure
     {
@@ -271,10 +271,10 @@ namespace VisualDraw
             return (float) Math.Sqrt(SqrDist(S, F));
         }
     }
-
-    public class Cross : Figure
+    public class Cross  : Figure
     {
-        Point C;
+        
+        public Point C;
 
         public Cross(Point p)
         {
@@ -307,10 +307,9 @@ namespace VisualDraw
             return (Math.Abs(C.X - S.X) <= 2) && (Math.Abs(C.Y - S.Y) <= 2);
         }
     }
-    
-    public class Line: Figure
+    public class Line   : Figure
     {
-        Point S, F;
+        public Point S, F;
 
         public Line(Point s, Point f)
         {
@@ -342,16 +341,15 @@ namespace VisualDraw
             return (Math.Abs(Dist(S, P) + Dist(P, F) - Dist(S, F)) <= 1);
         }
     }
-        
     public class Circle : Figure
     {    
-        Point C;
-        float R;
+        public Point C;
+        public int R;
 
         public Circle(Point c, Point o)
         {
             this.C = c;
-            this.R = Dist(c, o);
+            this.R = (int)Dist(c, o);
         }
         public Circle(StreamReader sr)
         {
@@ -360,7 +358,7 @@ namespace VisualDraw
             line = line.Trim();
             string[] foo = line.Split(' ');
             this.C = new Point(int.Parse(foo[0]), int.Parse(foo[1]));
-            this.R = float.Parse(foo[2]);
+            this.R = int.Parse(foo[2]);
         }
 
         public override void DrawWith(Graphics g, Pen p)

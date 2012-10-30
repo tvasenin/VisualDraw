@@ -42,6 +42,7 @@ namespace VisualDraw
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button_Delete = new System.Windows.Forms.Button();
+            this.FiguresList = new System.Windows.Forms.ListBox();
             this.menuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,9 +74,9 @@ namespace VisualDraw
             // MainCanvas
             // 
             this.MainCanvas.BackColor = System.Drawing.Color.White;
-            this.MainCanvas.Location = new System.Drawing.Point(85, 27);
+            this.MainCanvas.Location = new System.Drawing.Point(156, 27);
             this.MainCanvas.Name = "MainCanvas";
-            this.MainCanvas.Size = new System.Drawing.Size(595, 427);
+            this.MainCanvas.Size = new System.Drawing.Size(524, 427);
             this.MainCanvas.TabIndex = 2;
             this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
@@ -169,11 +170,22 @@ namespace VisualDraw
             this.button_Delete.UseVisualStyleBackColor = true;
             this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
+            // FiguresList
+            // 
+            this.FiguresList.FormattingEnabled = true;
+            this.FiguresList.Location = new System.Drawing.Point(12, 27);
+            this.FiguresList.Name = "FiguresList";
+            this.FiguresList.Size = new System.Drawing.Size(138, 316);
+            this.FiguresList.TabIndex = 6;
+            this.FiguresList.SelectedIndexChanged += new System.EventHandler(this.FiguresList_SelectedIndexChanged);
+            this.FiguresList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FiguresList_KeyDown);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 466);
+            this.Controls.Add(this.FiguresList);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.radioButton_Circle);
             this.Controls.Add(this.MainCanvas);
@@ -208,6 +220,7 @@ namespace VisualDraw
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button_Delete;
+        private System.Windows.Forms.ListBox FiguresList;
 
     }
 }
