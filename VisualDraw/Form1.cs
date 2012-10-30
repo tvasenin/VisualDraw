@@ -165,11 +165,9 @@ namespace VisualDraw
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string line;
-            openFileDialog1.ShowDialog();
-            file_cur = openFileDialog1.FileName;
-            
-            try
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                file_cur = openFileDialog1.FileName;
                 StreamReader sr = new StreamReader(file_cur);
                 Shapes.Clear();
                 ShapesList.SelectedIndices.Clear();
@@ -189,11 +187,6 @@ namespace VisualDraw
 
                 MainCanvas.Invalidate();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception: " + ex.Message);
-            }
-
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) //Save
         {
@@ -206,11 +199,10 @@ namespace VisualDraw
         }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e) //SaveAs
         {
-            saveFileDialog1.ShowDialog();
-            if (saveFileDialog1.FileName != "")
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-            file_cur = saveFileDialog1.FileName;
-            SaveFile(file_cur);
+                file_cur = saveFileDialog1.FileName;
+                SaveFile(file_cur);
             }
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
