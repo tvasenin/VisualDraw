@@ -169,7 +169,7 @@ namespace VisualDraw
                 file_cur = openFileDialog1.FileName;
                 StreamReader sr = new StreamReader(file_cur);
                 Shapes.Clear();
-                ShapesList.SelectedIndices.Clear();
+                ShapesList.Items.Clear();
                 line = sr.ReadLine();
                 while (line != null)
                 {
