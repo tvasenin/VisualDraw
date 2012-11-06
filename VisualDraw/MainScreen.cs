@@ -44,9 +44,9 @@ namespace VisualDraw
                 TempShape = new Cross(e.Location);
             }
             else {
-                if (radioButton_Line.Checked)   { TempShape = new Line(ShapeStart, e.Location); }
+                if (radioButton_Line.Checked)   { TempShape = new   Line(ShapeStart, e.Location); }
                 if (radioButton_Circle.Checked) { TempShape = new Circle(ShapeStart, e.Location); }
-                if (radioButton_Rect.Checked)   { TempShape = new Rect(ShapeStart, e.Location); }
+                if (radioButton_Rect.Checked)   { TempShape = new   Rect(ShapeStart, e.Location); }
             }
             MainCanvas.Invalidate();
         }
@@ -68,16 +68,20 @@ namespace VisualDraw
             //this.Text = Convert.ToString(e.X) + " - " + Convert.ToString(e.Y);
             if (radioButton_Cross.Checked)
                 AddShape(TempShape);
-            else {
-                if (IsShapeStart) { ShapeStart = e.Location; }
-                else AddShape(TempShape);
+            else
+            {
+                if (IsShapeStart)
+                    ShapeStart = e.Location;
+                else
+                    AddShape(TempShape);
                 IsShapeStart = !IsShapeStart;
             }
         }
-        
+
         private void AddShape(Shape AddedShape)
         {
-            if (AddedShape.IsNotDegenerate) { 
+            if (AddedShape.IsNotDegenerate)
+            {
                 Shapes.Add(AddedShape);
                 ShapesList.Items.Add(AddedShape.DescriptionString);
             }
@@ -94,22 +98,19 @@ namespace VisualDraw
         private int SelectMatching(List<Shape> Shapes, Point S)
         {
             for (int i = 0; i < Shapes.Count; i++)
-            {
                 if (Shapes[i].IsNearTo(S))
                     return i;
-            }
+
             return -1;
         }
 
         private void MainCanvas_Paint(object sender, PaintEventArgs e)
         {
-            foreach (Shape p in this.Shapes) {
+            foreach (Shape p in this.Shapes)
                 p.DrawWith(e.Graphics,pMain);
-            }
 
-            foreach (int i in ShapesList.SelectedIndices) {
+            foreach (int i in ShapesList.SelectedIndices)
                 Shapes[i].DrawWith(e.Graphics, pSelect);
-            }
             
             if (TempShape != null) 
                 TempShape.DrawWith(e.Graphics,pTemp);
@@ -195,7 +196,8 @@ namespace VisualDraw
         }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e) //SaveAs
         {
-            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 file_cur = saveFileDialog1.FileName;
                 SaveFile(file_cur);
             }
