@@ -209,16 +209,11 @@ namespace VisualDraw
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
-            int[] SelectedIndices_TEMP = new int[ShapesList.SelectedIndices.Count];
-            ShapesList.SelectedIndices.CopyTo(SelectedIndices_TEMP,0);
-            Array.Sort(SelectedIndices_TEMP);
-            Array.Reverse(SelectedIndices_TEMP);
-            foreach (int i in SelectedIndices_TEMP)
+            while (ShapesList.SelectedIndices.Count > 0)
             {
-                Shapes.RemoveAt(i);
-                ShapesList.Items.RemoveAt(i);
+                Shapes.RemoveAt(ShapesList.SelectedIndices[0]);
+                ShapesList.Items.RemoveAt(ShapesList.SelectedIndices[0]);
             }
-            ShapesList.SelectedIndices.Clear();
             MainCanvas.Invalidate();
         }
 
