@@ -138,8 +138,6 @@ namespace VisualDraw
             toolTip1.SetToolTip(radioButton_Line,   "Draw line");
             toolTip1.SetToolTip(radioButton_Circle, "Draw circle");
             toolTip1.SetToolTip(radioButton_Rect,   "Draw rectangle");
-
-
         }
         private void SaveFile(string file_cur)
         {
